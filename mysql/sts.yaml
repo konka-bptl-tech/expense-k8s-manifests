@@ -27,6 +27,22 @@ spec:
               secretKeyRef:
                 name: dev-mysql
                 key: MYSQL_ROOT_PASSWORD
+        readinessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - mysqladmin ping -h 127.0.0.1 -u root -p$MYSQL_ROOT_PASSWORD
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        livenessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - mysqladmin ping -h 127.0.0.1 -u root -p$MYSQL_ROOT_PASSWORD
   volumeClaimTemplates:
   - metadata:
       name: dev-mysql
