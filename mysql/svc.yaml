@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev-mysql
+  labels:
+    app: expense-mysql
+spec:
+  ports:
+  - port: 3306
+    name: mysql
+  clusterIP: None
+  selector:
+    app: expense-mysql
