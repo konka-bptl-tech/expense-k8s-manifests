@@ -22,11 +22,11 @@ spec:
         - name: dev-mysql
           mountPath: /var/lib/mysql
         env:
-          - name: DB_PASSWORD
+          - name:  MYSQL_ROOT_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: dev-mysql
-                key: DB_PASSWORD
+                key: MYSQL_ROOT_PASSWORD
   volumeClaimTemplates:
   - metadata:
       name: dev-mysql
