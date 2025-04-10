@@ -4,4 +4,4 @@ metadata:
   name: dev-backend
 data:
   DB_DATABASE: transactions
-  DB_HOST: mysql
+  DB_HOST: dev-mysql
