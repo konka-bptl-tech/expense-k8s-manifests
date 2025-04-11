@@ -19,6 +19,13 @@ spec:
         image: 522814728660.dkr.ecr.ap-south-1.amazonaws.com/expense-frontend:v1
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
         volumeMounts:
         - name: nginx-config
           mountPath: /etc/nginx/nginx.conf
