@@ -27,19 +27,26 @@ spec:
               secretKeyRef:
                 name: dev-mysql
                 key: MYSQL_ROOT_PASSWORD
-        livenessProbe:
-          exec:
-            command: ["mysqladmin", "ping", "-uroot", "-p${MYSQL_ROOT_PASSWORD}"]
-          initialDelaySeconds: 30  # Allow full startup
+        liveness:
+          command:
+            - "mysqladmin"
+            - "ping"
+            - "-h"
+            - "localhost"
+          initialDelaySeconds: 30
           periodSeconds: 10
+          timeoutSeconds: 5
           failureThreshold: 3
-
-        readinessProbe:
-          exec:
-            command: ["mysql", "-uroot", "-p${MYSQL_ROOT_PASSWORD}", "-e", "SELECT 1"]
-          initialDelaySeconds: 30  # Start checking sooner
-          periodSeconds: 5        # More frequent checks
-          failureThreshold: 1
+        readiness:
+          command:
+            - "mysqladmin"
+            - "ping"
+            - "-h"
+            - "localhost"
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
   volumeClaimTemplates:
   - metadata:
       name: dev-mysql
