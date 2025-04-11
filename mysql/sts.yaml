@@ -27,22 +27,23 @@ spec:
               secretKeyRef:
                 name: dev-mysql
                 key: MYSQL_ROOT_PASSWORD
-        livenessProbe:
-          command:
-            - "mysqladmin"
-            - "ping"
-            - "-h"
-            - "localhost"
+        readinessProbe:
+          exec:
+            command:
+              - sh
+              - -c
+              - "mysqladmin ping -u root -p$MYSQL_ROOT_PASSWORD -h 127.0.0.1"
           initialDelaySeconds: 30
           periodSeconds: 10
           timeoutSeconds: 5
           failureThreshold: 3
-        readinessProbe:
-          command:
-            - "mysqladmin"
-            - "ping"
-            - "-h"
-            - "localhost"
+
+        livenessProbe:
+          exec:
+            command:
+              - sh
+              - -c
+              - "mysqladmin ping -u root -p$MYSQL_ROOT_PASSWORD -h 127.0.0.1"
           initialDelaySeconds: 30
           periodSeconds: 10
           timeoutSeconds: 5
