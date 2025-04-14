@@ -14,7 +14,7 @@ metadata:
     alb.ingress.kubernetes.io/group.order: '10'
     alb.ingress.kubernetes.io/healthcheck-path: '/'
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
-    alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:ap-south-1:522814728660:certificate/54d1708c-9ca1-4f29-802c-37d2fb6ae06f'
+    alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:ap-south-1:522814728660:certificate/f8a4f272-b11e-472d-96bd-e196fcbbff3d'
     alb.ingress.kubernetes.io/ssl-policy: 'ELBSecurityPolicy-2016-08'
     alb.ingress.kubernetes.io/actions.ssl-redirect: >
       {"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301" }}
