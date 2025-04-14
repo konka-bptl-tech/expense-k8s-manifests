@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: dev-mysql
+  labels:
+     app: expense-mysql
 spec:
   selector:
     matchLabels:
@@ -34,7 +36,7 @@ spec:
           limits:
             memory: "800Mi"
             cpu: "250m"
-        readinessProbe:
+        livenessProbe:
           exec:
             command:
               - sh
@@ -44,7 +46,7 @@ spec:
           periodSeconds: 10
           timeoutSeconds: 5
           failureThreshold: 3
-        livenessProbe:
+        readinessProbe:
           exec:
             command:
               - sh
